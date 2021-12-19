@@ -1,0 +1,22 @@
+modLoader="javafml" #mandatory
+loaderVersion="[38,)" #mandatory
+license="All rights reserved"
+
+[[mods]]
+modId="simplestats" #mandatory
+version="${file.jarVersion}" #mandatory
+displayName="Simple Stats" #mandatory
+credits='''
+
+AppleSkin for NetworkSync of Food Stats.
+HBWHelper for Mod Config Screen.
+ '''#optional
+authors="ARogueOtaku" #optional
+description="A Simple Stats Mod"
+
+[[dependencies.simplestats]] #optional
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="[38,)" #mandatory
+    ordering="AFTER"
+    side="CLIENT"
