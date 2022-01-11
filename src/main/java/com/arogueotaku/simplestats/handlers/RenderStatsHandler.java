@@ -2,11 +2,15 @@ package com.arogueotaku.simplestats.handlers;
 
 import com.arogueotaku.simplestats.utils.ConfigUtil;
 import com.arogueotaku.simplestats.utils.MathUtil;
+import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodData;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
@@ -26,7 +30,7 @@ public class RenderStatsHandler {
         String exhaustion = "Exhaustion: " + MathUtil.roundString(playerFoodData.getExhaustionLevel(), 1);
         String saturation = "Saturation: " + MathUtil.roundString(playerFoodData.getSaturationLevel(), 1);
         String latency = "Latency: " + minecraft.player.connection.getPlayerInfo(minecraft.player.getUUID()).getLatency() + " ms";
-        String biome = "Biome: " + minecraft.level.getBiome(new BlockPos(playerPos)).getRegistryName().toString().replace("minecraft:", "");
+        String biome = Util.makeDescriptionId("Biome: ", minecraft.level.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY).getKey(minecraft.level.getBiome(new BlockPos(playerPos)))).replace(".minecraft.","");
         statsMap.put("fps", fps);
         statsMap.put("x", xPos);
         statsMap.put("y", yPos);
